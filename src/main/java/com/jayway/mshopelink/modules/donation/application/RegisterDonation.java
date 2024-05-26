@@ -19,7 +19,7 @@ public class RegisterDonation {
         Donation donation = Donation.create(
                 request.getAmountDonation(),
                 request.getContributionPercentage(),
-                request.getDonor().toDomain()
+                request.getDonor()
         );
 
         donationRepository.save(donation);
