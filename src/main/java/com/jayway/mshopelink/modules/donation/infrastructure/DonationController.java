@@ -1,7 +1,7 @@
 package com.jayway.mshopelink.modules.donation.infrastructure;
 
 import com.jayway.mshopelink.modules.donation.application.RegisterDonation;
-import com.jayway.mshopelink.modules.donation.domain.dto.ErrorResponse;
+import com.jayway.mshopelink.commons.ErrorResponse;
 import com.jayway.mshopelink.modules.donation.domain.dto.RegisterDonationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

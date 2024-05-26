@@ -1,6 +1,5 @@
 package com.jayway.mshopelink.commons;
 
-import com.jayway.mshopelink.modules.donation.domain.dto.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.request.RequestContextHolder;

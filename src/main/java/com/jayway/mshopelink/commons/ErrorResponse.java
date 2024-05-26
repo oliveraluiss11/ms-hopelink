@@ -1,4 +1,4 @@
-package com.jayway.mshopelink.modules.donation.domain.dto;
+package com.jayway.mshopelink.commons;
 
 import lombok.*;
 import org.springframework.http.HttpStatus;
