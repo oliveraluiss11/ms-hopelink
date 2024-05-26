@@ -23,8 +23,7 @@ public class RegisterDonation {
         );
 
         donationRepository.save(donation);
-        RegisteredDonationEvent event = new RegisteredDonationEvent(donation);
-        domainEventPublisher.publish(event);
+        domainEventPublisher.publish(donation.pullEvents());
     }
 
 }
