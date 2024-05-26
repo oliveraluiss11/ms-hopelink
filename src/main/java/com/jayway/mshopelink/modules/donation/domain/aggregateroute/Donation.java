@@ -1,6 +1,6 @@
 package com.jayway.mshopelink.modules.donation.domain.aggregateroute;
 
-import com.jayway.mshopelink.commons.RootAggregate;
+import com.jayway.mshopelink.commons.AggregateRoot;
 import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
 import com.jayway.mshopelink.modules.donation.domain.exception.AmountRequiredException;
 import com.jayway.mshopelink.modules.donation.domain.exception.ContruibutionPercentageRequiredException;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
 
-public class Donation extends RootAggregate {
+public class Donation extends AggregateRoot {
 
     private final Amount amountDonation;
     private final Amount contributionPercentage;

@@ -1,11 +1,9 @@
 package com.jayway.mshopelink.commons;
 
-import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
-
 import java.util.LinkedList;
 import java.util.List;
 
-public class RootAggregate {
+public class AggregateRoot {
 
     private List<DomainEvent> events = new LinkedList<>();
 
