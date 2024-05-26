@@ -1,8 +1,9 @@
 package com.jayway.mshopelink.modules.donation.domain.aggregateroute;
 
-import com.jayway.mshopelink.commons.DomainEvent;
 import com.jayway.mshopelink.commons.RootAggregate;
 import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
+import com.jayway.mshopelink.modules.donation.domain.exception.AmountRequiredException;
+import com.jayway.mshopelink.modules.donation.domain.exception.ContruibutionPercentageRequiredException;
 import com.jayway.mshopelink.modules.donation.domain.valueobjects.Amount;
 import lombok.Getter;
 
@@ -10,7 +11,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 
 public class Donation extends RootAggregate {
@@ -29,6 +29,12 @@ public class Donation extends RootAggregate {
     }
 
     public static Donation create(BigDecimal amountDonation, BigDecimal contributionPercentage, Donor donor) {
+        if (amountDonation == null) {
+            throw new AmountRequiredException();
+        }
+        if (contributionPercentage == null) {
+            throw new ContruibutionPercentageRequiredException();
+        }
         var root = new Donation(
                 amountDonation,
                 contributionPercentage,
