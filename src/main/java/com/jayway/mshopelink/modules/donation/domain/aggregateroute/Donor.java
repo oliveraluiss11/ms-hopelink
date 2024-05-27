@@ -14,14 +14,21 @@ public class Donor {
     private final Boolean anonymous;
     private final Boolean subscriptionConsent;
 
-    public Donor(String firstName, String lastName, String documentNumber,
-                 String email, Boolean isAnonymous, Boolean subscriptionConsent) {
+    private Donor(String firstName, String lastName, String documentNumber,
+                 String email, Boolean anonymous, Boolean subscriptionConsent) {
         this.firstName = new Name(firstName);
         this.lastName = new Name(lastName);
         this.documentNumber = new DocumentNumber(documentNumber);
         this.email = new Email(email);
-        this.anonymous = Optional.ofNullable(isAnonymous).orElse(Boolean.FALSE);
-        this.subscriptionConsent = Optional.ofNullable(subscriptionConsent).orElse(Boolean.FALSE);
+        this.anonymous = anonymous;
+        this.subscriptionConsent = subscriptionConsent;
+    }
+
+    public static Donor create(String firstName, String lastName, String documentNumber,
+                        String email, Boolean anonymous, Boolean subscriptionConsent){
+        anonymous = Optional.ofNullable(anonymous).orElse(Boolean.FALSE);
+        subscriptionConsent = Optional.ofNullable(subscriptionConsent).orElse(Boolean.FALSE);
+        return new Donor(firstName, lastName, documentNumber, email, anonymous, subscriptionConsent);
     }
     public String getFirstName() {
         return this.firstName.value();

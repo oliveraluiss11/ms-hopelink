@@ -4,19 +4,18 @@ import com.jayway.mshopelink.commons.DomainEvent;
 import com.jayway.mshopelink.commons.DomainEventPublisher;
 import com.jayway.mshopelink.modules.donation.domain.aggregateroute.Donation;
 import com.jayway.mshopelink.modules.donation.domain.dto.RegisterDonationRequest;
+import com.jayway.mshopelink.modules.donation.domain.dto.RegisterDonor;
 import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
 import com.jayway.mshopelink.modules.donation.domain.repository.DonationRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.UUID;
 
 import static org.mockito.Mockito.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RegisterDonationTest {
 
@@ -30,27 +29,37 @@ class RegisterDonationTest {
     }
 
     @Test
-    void registerWhenDonorIsAnonymous() {
-        var donationRepositorySpy = spy(donationRepository);
-        donationRepositorySpy.save(Donation.create(BigDecimal.valueOf(1L), BigDecimal.valueOf(1L), null));
-
-        var domainEventPublisherSpy = spy(domainEventPublisher);
-        domainEventPublisherSpy.publish(new LinkedList<>());
-
+    void registerTest() {
         RegisterDonation registerDonation = new RegisterDonation(domainEventPublisher, donationRepository);
-        registerDonation.register(RegisterDonationRequest
+        RegisterDonor registerDonor = RegisterDonor
                 .builder()
-                        .amountDonation(BigDecimal.ONE)
-                        .contributionPercentage(BigDecimal.TWO)
-                .build());
+                .firstName("Luis Antonio")
+                .lastName("Nuñes Rivas")
+                .documentNumber("77380599")
+                .email("prueba@gmail.com")
+                .anonymous(Boolean.FALSE)
+                .subscriptionConsent(Boolean.TRUE)
+                .build();
+        RegisterDonationRequest registerDonationRequest = RegisterDonationRequest
+                .builder()
+                .campaignId(UUID.randomUUID().toString())
+                .amountDonation(BigDecimal.TWO)
+                .contributionPercentage(BigDecimal.ONE)
+                .donor(registerDonor)
+                .build();
+        registerDonation.register(registerDonationRequest);
 
-        verify(donationRepositorySpy,
-                times(1)
-        ).save(any());
+        // Verificar que el repositorio haya guardado la donación
+        ArgumentCaptor<Donation> donationCaptor = ArgumentCaptor.forClass(Donation.class);
+        verify(donationRepository, times(1)).save(donationCaptor.capture());
+        Donation savedDonation = donationCaptor.getValue();
 
-        verify(domainEventPublisherSpy,
-                times(1)
-        ).publish(anyList());
+        Assertions.assertEquals(registerDonationRequest.getAmountDonation(), savedDonation.getAmountDonation());
+        Assertions.assertEquals(registerDonationRequest.getCampaignId(), savedDonation.getCampaignId());
+        Assertions.assertEquals(registerDonationRequest.getDonor().getFirstName(), savedDonation.getFirstName());
+
+        // Verificar que se haya publicado un evento
+        verify(domainEventPublisher, times(1)).publish(anyList());
     }
 
 }

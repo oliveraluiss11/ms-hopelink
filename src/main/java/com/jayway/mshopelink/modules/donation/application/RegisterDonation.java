@@ -19,6 +19,7 @@ public class RegisterDonation {
         Donation donation = Donation.create(
                 request.getAmountDonation(),
                 request.getContributionPercentage(),
+                request.getCampaignId(),
                 request.getDonor()
         );
 

@@ -14,6 +14,8 @@ public class RegisterDonationRequest {
     private final BigDecimal amountDonation;
     @Getter
     private final BigDecimal contributionPercentage;
+    @Getter
+    private final String campaignId;
 
     private final RegisterDonor donor;
 
