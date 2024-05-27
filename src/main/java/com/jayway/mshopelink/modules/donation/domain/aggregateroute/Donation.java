@@ -2,12 +2,9 @@ package com.jayway.mshopelink.modules.donation.domain.aggregateroute;
 
 import com.jayway.mshopelink.commons.AggregateRoot;
 import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
-import com.jayway.mshopelink.modules.donation.domain.exception.AmountRequiredException;
-import com.jayway.mshopelink.modules.donation.domain.exception.ContruibutionPercentageRequiredException;
 import com.jayway.mshopelink.modules.donation.domain.valueobjects.Amount;
 import com.jayway.mshopelink.modules.donation.domain.valueobjects.DocumentId;
 import lombok.Getter;
-import org.bson.types.ObjectId;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

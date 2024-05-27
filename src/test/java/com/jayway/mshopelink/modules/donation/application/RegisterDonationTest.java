@@ -1,11 +1,9 @@
 package com.jayway.mshopelink.modules.donation.application;
 
-import com.jayway.mshopelink.commons.DomainEvent;
 import com.jayway.mshopelink.commons.DomainEventPublisher;
 import com.jayway.mshopelink.modules.donation.domain.aggregateroute.Donation;
 import com.jayway.mshopelink.modules.donation.domain.dto.RegisterDonationRequest;
 import com.jayway.mshopelink.modules.donation.domain.dto.RegisterDonor;
-import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
 import com.jayway.mshopelink.modules.donation.domain.repository.DonationRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
