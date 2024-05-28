@@ -1,34 +1,39 @@
 package com.jayway.mshopelink.modules.donation.domain.aggregateroute;
 
-import com.jayway.mshopelink.modules.donation.domain.exception.AmountRequiredException;
-import com.jayway.mshopelink.modules.donation.domain.exception.BusinessException;
-import com.jayway.mshopelink.modules.donation.domain.exception.ContruibutionPercentageRequiredException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DonationTest {
 
     @Test
     void shouldNotCreateWhenAmountIsNull() {
-        assertThrows(AmountRequiredException.class, () -> {
-            Donation.create(null, null, null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Donation.create(null, null, null, null);
         });
     }
 
     @Test
     void shouldNotCreateWhenContributionPercentageIsNull() {
-        assertThrows(ContruibutionPercentageRequiredException.class, () -> {
-            Donation.create(BigDecimal.ONE, null, null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Donation.create(BigDecimal.ONE, null, null, null);
+        });
+    }
+    @Test
+    void shouldNotCreateWhenCampaignIdIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Donation.create(BigDecimal.ONE, BigDecimal.TWO, null, null);
         });
     }
 
     @Test
-    void shouldCreateWhenDonorIsNull() {
-        var donation = Donation.create(BigDecimal.ONE, BigDecimal.TWO, null);
-        assertNotNull(donation);
+    void shouldNotCreateWhenDonorIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Donation.create(BigDecimal.ONE, BigDecimal.TWO, UUID.randomUUID().toString(), null);
+        });
     }
 
 }

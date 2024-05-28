@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class DonationDocument {
     @Id
     private String donationId;
+    private String campaignId;
     private BigDecimal amountDonation;
     private BigDecimal contributionPercentage;
     private BigDecimal contributionAmount;
@@ -36,6 +37,7 @@ public class DonationDocument {
                 .contributionPercentage(donation.getContributionPercentage())
                 .contributionAmount(donation.getContributionAmount())
                 .totalDonation(donation.getTotalDonation())
+                .campaignId(donation.getCampaignId())
                 .donor(donor)
                 .build();
     }
