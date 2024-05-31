@@ -42,7 +42,7 @@ class RegisterDonationTest {
                 .builder()
                 .campaignId(UUID.randomUUID().toString())
                 .amountDonation(BigDecimal.TWO)
-                .contributionPercentage(BigDecimal.ONE)
+                .contributionPercentage(BigDecimal.valueOf(0.23))
                 .donor(registerDonor)
                 .build();
         registerDonation.register(registerDonationRequest);

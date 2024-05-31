@@ -3,6 +3,7 @@ package com.jayway.mshopelink.modules.donation.domain.aggregateroute;
 import com.jayway.mshopelink.commons.AggregateRoot;
 import com.jayway.mshopelink.modules.donation.domain.events.RegisteredDonationEvent;
 import com.jayway.mshopelink.modules.donation.domain.valueobjects.Amount;
+import com.jayway.mshopelink.modules.donation.domain.valueobjects.ContributionPercentage;
 import com.jayway.mshopelink.modules.donation.domain.valueobjects.DocumentId;
 import lombok.Getter;
 
@@ -16,10 +17,9 @@ import java.util.Optional;
 public class Donation extends AggregateRoot {
 
     private final Amount amountDonation;
-    private final Amount contributionPercentage;
+    private final ContributionPercentage contributionPercentage;
     @Getter
     private final LocalDateTime registrationDate;
-    @Getter
     private final DocumentId campaignId;
     private final Donor donor;
 
@@ -28,7 +28,7 @@ public class Donation extends AggregateRoot {
                      Donor donor, String campaignId,
                      LocalDateTime registrationDate) {
         this.amountDonation = new Amount(amountDonation);
-        this.contributionPercentage = new Amount(contributionPercentage);
+        this.contributionPercentage = new ContributionPercentage(contributionPercentage);
         this.donor = donor;
         this.campaignId = new DocumentId(campaignId);
         this.registrationDate = Optional.ofNullable(registrationDate).orElse(LocalDateTime.now(ZoneId.systemDefault()));
