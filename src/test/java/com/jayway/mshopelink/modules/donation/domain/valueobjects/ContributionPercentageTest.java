@@ -32,22 +32,16 @@ public class ContributionPercentageTest {
 
     @Test
     void shouldNotCreateWhenAmountIsGreaterThan030() {
-        assertThrows(InvalidContributionPercentageException.class, () -> {
-            new ContributionPercentage(new BigDecimal("0.31"));
-        });
+        assertThrows(InvalidContributionPercentageException.class, () -> new ContributionPercentage(new BigDecimal("0.31")));
     }
 
     @Test
     void shouldNotCreateWhenAmountIsLessThanZero() {
-        assertThrows(InvalidContributionPercentageException.class, () -> {
-            new ContributionPercentage(new BigDecimal("-0.01"));
-        });
+        assertThrows(InvalidContributionPercentageException.class, () -> new ContributionPercentage(new BigDecimal("-0.01")));
     }
 
     @Test
     void shouldNotCreateWhenAmountIsNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new ContributionPercentage(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new ContributionPercentage(null));
     }
 }

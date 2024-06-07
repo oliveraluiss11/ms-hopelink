@@ -1,8 +1,8 @@
 package com.jayway.mshopelink.modules.register_campaign.domain.aggregate;
 
 import com.jayway.mshopelink.commons.valueobjects.CategoryEnum;
-import com.jayway.mshopelink.commons.valueobjects.OrganizerCampaign;
-import com.jayway.mshopelink.commons.valueobjects.Recipient;
+import com.jayway.mshopelink.commons.aggregateroute.MemberCampaign;
+import com.jayway.mshopelink.commons.aggregateroute.Recipient;
 import com.jayway.mshopelink.commons.valueobjects.RecipientEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CampaignTest {
 
-    private OrganizerCampaign organizerCampaign;
+    private MemberCampaign organizerCampaign;
     private RecipientEnum recipientType;
     private List<Recipient> recipients;
     private String title;
@@ -26,7 +26,7 @@ public class CampaignTest {
 
     @BeforeEach
     void setUp() {
-        this.organizerCampaign = OrganizerCampaign.create("org123", "John", "Doe");
+        this.organizerCampaign = MemberCampaign.create("org123", "John", "Doe");
         this.recipientType = RecipientEnum.MYSELF;
         this.recipients = List.of(Recipient.create("John Doe", "12345678", 30, "https://yourapp.firebaseapp.com/media"));
         this.title = "Campaign Title";

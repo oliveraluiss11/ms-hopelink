@@ -1,5 +1,7 @@
 package com.jayway.mshopelink.modules.register_campaign.domain.aggregate;
 
+import com.jayway.mshopelink.commons.aggregateroute.MemberCampaign;
+import com.jayway.mshopelink.commons.aggregateroute.Recipient;
 import com.jayway.mshopelink.commons.valueobjects.*;
 import lombok.Getter;
 
@@ -11,7 +13,7 @@ public class Campaign {
     private static final String ORGANIZER_CAMPAIGN_CANNOT_BE_NULL = "OrganizerCampaign cannot be null";
     private final PostalCode postalCode;
     private final Amount targetAmount;
-    private final OrganizerCampaign organizerCampaign;
+    private final MemberCampaign organizerCampaign;
     private final RecipientEnum recipientType;
     @Getter
     private final List<Recipient> recipients;
@@ -20,7 +22,7 @@ public class Campaign {
     private final CategoryEnum category;
     private final Media media;
 
-    private Campaign(String postalCode, BigDecimal targetAmount, OrganizerCampaign organizerCampaign,
+    private Campaign(String postalCode, BigDecimal targetAmount, MemberCampaign organizerCampaign,
                     RecipientEnum recipientType, List<Recipient> recipients, String title,
                     String description, CategoryEnum category, String media){
         Optional.ofNullable(organizerCampaign)
@@ -40,10 +42,10 @@ public class Campaign {
         this.media = new Media(media);
     }
 
-    public static Campaign create(String postalCode, BigDecimal targetAmount, OrganizerCampaign organizerCampaign,
+    public static Campaign create(String postalCode, BigDecimal targetAmount, MemberCampaign memberCampaign,
                            RecipientEnum recipientType, List<Recipient> recipients, String title,
                            String description, CategoryEnum category, String media){
-        return new Campaign(postalCode, targetAmount, organizerCampaign, recipientType,
+        return new Campaign(postalCode, targetAmount, memberCampaign, recipientType,
                 recipients, title, description, category, media);
     }
 

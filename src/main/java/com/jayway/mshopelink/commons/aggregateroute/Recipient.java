@@ -1,5 +1,8 @@
-package com.jayway.mshopelink.commons.valueobjects;
+package com.jayway.mshopelink.commons.aggregateroute;
 
+import com.jayway.mshopelink.commons.valueobjects.Age;
+import com.jayway.mshopelink.commons.valueobjects.Media;
+import com.jayway.mshopelink.commons.valueobjects.Name;
 import com.jayway.mshopelink.modules.donation.domain.valueobjects.DocumentNumber;
 
 public class Recipient {
