@@ -13,6 +13,7 @@ public class Campaign {
     private static final String ORGANIZER_CAMPAIGN_CANNOT_BE_NULL = "OrganizerCampaign cannot be null";
     private final PostalCode postalCode;
     private final Amount targetAmount;
+    @Getter
     private final MemberCampaign organizerCampaign;
     private final RecipientEnum recipientType;
     @Getter

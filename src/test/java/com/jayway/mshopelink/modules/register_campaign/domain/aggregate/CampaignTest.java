@@ -26,7 +26,7 @@ public class CampaignTest {
 
     @BeforeEach
     void setUp() {
-        this.organizerCampaign = MemberCampaign.create("org123", "John", "Doe");
+        this.organizerCampaign = MemberCampaign.create("org123", "John", "Doe", "https://subdomain.firebaseapp.com/another-route");
         this.recipientType = RecipientEnum.MYSELF;
         this.recipients = List.of(Recipient.create("John Doe", "12345678", 30, "https://yourapp.firebaseapp.com/media"));
         this.title = "Campaign Title";
