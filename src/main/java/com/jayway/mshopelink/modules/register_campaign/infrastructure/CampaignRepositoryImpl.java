@@ -1,7 +1,7 @@
 package com.jayway.mshopelink.modules.register_campaign.infrastructure;
 
 import com.jayway.mshopelink.modules.register_campaign.domain.aggregate.Campaign;
-import com.jayway.mshopelink.modules.register_campaign.domain.aggregate.CampaignRepository;
+import com.jayway.mshopelink.modules.register_campaign.domain.repository.CampaignRepository;
 import com.jayway.mshopelink.modules.register_campaign.infrastructure.persistence.CampaignDocument;
 import com.jayway.mshopelink.modules.register_campaign.infrastructure.persistence.CampaignMongoRepository;
 import lombok.RequiredArgsConstructor;
